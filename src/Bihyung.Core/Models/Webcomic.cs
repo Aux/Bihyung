@@ -16,6 +16,15 @@ public enum WebcomicSource
     Flamescans
 }
 
+public enum PollingType
+{
+    Invalid = -1,
+
+    Rss,
+    Json,
+    Html
+}
+
 public class Webcomic
 {
     public object Id { get; init; }
@@ -25,6 +34,7 @@ public class Webcomic
     public string CoverImageUrl { get; set; }
     public string LinkUrl { get; set; }
     public string PollingUrl { get; set; }
+    public PollingType PollingType { get; set; }
 
     public WebcomicSource Source { get; init; } 
 }

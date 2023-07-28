@@ -5,18 +5,12 @@ using System.Threading.Tasks;
 namespace Bihyung.Functions;
 
 /// <summary>
-///     Cloud Function used for "asynchronous" polling of configured webcomics
+///     Container for <see cref="Bihyung.Services.NotifyService"/> when executed as a cloud function.
 /// </summary>
-/// <remarks>
-///     Polling is executed once per configured webcomic. 
-/// </remarks>
-public class PollingFunction : IHttpFunction
+public class NotifyFunction : IHttpFunction
 {
     public async Task HandleAsync(HttpContext context)
     {
-        
-
-
         await context.Response.WriteAsync("Hello, Functions Framework.");
     }
 }

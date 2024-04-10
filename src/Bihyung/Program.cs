@@ -5,17 +5,24 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using ZLogger;
+using ZLogger.Providers;
 
 using var host = Host.CreateDefaultBuilder(args)
     .ConfigureAppConfiguration(config =>
     {
-        config.AddEnvironmentVariables("BIHYUNG_");
+        //config.AddEnvironmentVariables("BIHYUNG_");
     })
     .ConfigureLogging(logging =>
     {
         logging.ClearProviders();
         logging.AddZLoggerConsole();
-        logging.AddZLoggerRollingFile((dt, x) => $"logs/{dt.ToLocalTime():yyyy-MM-dd}_{x:000}.log", x => x.ToLocalTime().Date, 1024);
+        logging.SetMinimumLevel(LogLevel.Debug);
+        logging.AddZLoggerRollingFile(rolling =>
+        {
+            rolling.FilePathSelector = (dt, x) => $"logs/{dt.ToLocalTime():yyyy-MM-dd}_{x:000}.log";
+            rolling.RollingInterval = RollingInterval.Day;
+            rolling.RollingSizeKB = 1024;
+        });
     })
     .AddDiscord()
     .AddFirestore()
@@ -23,8 +30,9 @@ using var host = Host.CreateDefaultBuilder(args)
     {
         services.AddHostedService<DiscordStartupService>();
         services.AddHostedService<InteractionHandlingService>();
-        services.AddHttpClient<WebtoonScraper>();
-        
+        services.AddHttpClient();
+
+        services.AddTransient<WebtoonService>();
     })
     .Build();
 

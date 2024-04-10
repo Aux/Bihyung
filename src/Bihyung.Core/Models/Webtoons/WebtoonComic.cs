@@ -1,9 +1,11 @@
 ﻿namespace Bihyung.Models;
 
-public class WebtoonComic : Webcomic
+public record class WebtoonComic(
+    string Title,
+    string Author,
+    WebtoonUrl Url
+    )
 {
-    public string Language { get; init; }
-    public string Genre { get; init; }
-    public string Slug { get; set; }
-    public string UpdateRate { get; set; }
+    public string ThumbnailUrl { get; set; }
+    public DayOfWeek? DayOfWeek { get; set; }
 }

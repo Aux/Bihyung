@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bihyung", "src\Bihyung\Bihy
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bihyung.Core", "src\Bihyung.Core\Bihyung.Core.csproj", "{70199608-7F69-4D84-86EA-C6FDE27BA0AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bihyung.Functions", "src\Bihyung.Functions\Bihyung.Functions.csproj", "{270E5765-9250-422A-92D0-2F61C6F8F767}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{83F8253F-08AA-456D-B9BE-96E7D9B5C796}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
@@ -30,10 +28,6 @@ Global
 		{70199608-7F69-4D84-86EA-C6FDE27BA0AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70199608-7F69-4D84-86EA-C6FDE27BA0AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70199608-7F69-4D84-86EA-C6FDE27BA0AD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{270E5765-9250-422A-92D0-2F61C6F8F767}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{270E5765-9250-422A-92D0-2F61C6F8F767}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{270E5765-9250-422A-92D0-2F61C6F8F767}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{270E5765-9250-422A-92D0-2F61C6F8F767}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

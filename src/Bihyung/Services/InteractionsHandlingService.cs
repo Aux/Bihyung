@@ -1,4 +1,6 @@
-﻿using Discord;
+﻿using Bihyung.Models;
+using Bihyung.TypeReaders;
+using Discord;
 using Discord.Interactions;
 using Discord.WebSocket;
 using Microsoft.Extensions.Configuration;
@@ -21,13 +23,13 @@ public class InteractionHandlingService : IHostedService
         InteractionService interactions,
         IServiceProvider services,
         IConfiguration config,
-        LoggerFactory factory)
+        ILogger<InteractionHandlingService> logger)
     {
         _discord = discord;
         _interactions = interactions;
         _services = services;
         _config = config;
-        _logger = factory.CreateLogger("Interactions");
+        _logger = logger;
 
         _interactions.Log += msg => LogHelper.OnLogAsync(_logger, msg);
     }
@@ -36,6 +38,8 @@ public class InteractionHandlingService : IHostedService
     {
         _discord.Ready += () => _interactions.RegisterCommandsGloballyAsync(true);
         _discord.InteractionCreated += OnInteractionAsync;
+
+        _interactions.AddTypeConverter<WebtoonComic>(new WebtoonComicConverter());
 
         await _interactions.AddModulesAsync(Assembly.GetEntryAssembly(), _services);
     }
@@ -54,7 +58,7 @@ public class InteractionHandlingService : IHostedService
             var result = await _interactions.ExecuteCommandAsync(context, _services);
 
             if (!result.IsSuccess)
-                await context.Channel.SendMessageAsync(result.ToString());
+                await interaction.RespondAsync(result.ToString(), ephemeral: true);
         } catch
         {
             if (interaction.Type == InteractionType.ApplicationCommand)

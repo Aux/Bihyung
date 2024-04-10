@@ -15,11 +15,11 @@ public class DiscordStartupService : IHostedService
     public DiscordStartupService(
         DiscordSocketClient discord, 
         IConfiguration config,
-        LoggerFactory factory)
+        ILogger<DiscordStartupService> logger)
     {
         _discord = discord;
         _config = config;
-        _logger = factory.CreateLogger("Discord");
+        _logger = logger;
 
         _discord.Log += msg => LogHelper.OnLogAsync(_logger, msg);
     }

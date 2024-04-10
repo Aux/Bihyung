@@ -2,7 +2,6 @@
 using Discord.Interactions;
 using Discord.Rest;
 using Discord.WebSocket;
-using Google.Cloud.Firestore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -38,13 +37,13 @@ public static class Registry
 
     public static IHostBuilder AddFirestore(this IHostBuilder builder)
     {
-        builder.ConfigureServices(services =>
-        {
-            services.AddFirestoreClient(firestore =>
-            {
+        //builder.ConfigureServices(services =>
+        //{
+        //    services.AddFirestoreClient(firestore =>
+        //    {
                 
-            });
-        });
+        //    });
+        //});
 
         return builder;
     }
